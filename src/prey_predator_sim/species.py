@@ -10,8 +10,14 @@ class Creature:
         self.p_reproduce = p_reproduce
 
     def kill(self):
+        '''kills the creature with probablity p_death'''
         if random.random() < self.p_death:
             self.alive = False
 
     def reproduce(self):
-        pass
+        '''returns new instance of creature with probablity p_reproduce (otherwise: None)'''
+
+        # to do: change creature class to different one
+
+        if random.random() < self.p_reproduce:
+            return Creature(p_death=self.p_death, p_reproduce=self.p_reproduce)
