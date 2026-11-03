@@ -2,7 +2,9 @@ from .species import Creature
 
 
 class Population:
+
     _instances: set[Creature]
+    history: list[int]
 
     def __init__(self, n: int, **kwargs):
         self._instances = set(
