@@ -19,5 +19,7 @@ class Creature:
 
         # to do: change creature class to different one
 
-        if random.random() < self.p_reproduce:
+        if self.alive and  (random.random() < self.p_reproduce):
             return Creature(p_death=self.p_death, p_reproduce=self.p_reproduce)
+
+        return None
