@@ -15,10 +15,5 @@ class Population:
         for creature in self._instances:
             creature.kill()
 
-        self._instances = {
-            creature
-            for creature in self._instances
-            if creature.alive
-        }
-
+        self._instances = set([creature for creature in self._instances if creature.alive])
         self.n = len(self._instances)
