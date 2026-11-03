@@ -19,8 +19,8 @@ class Population:
 
         self._instances = set([creature for creature in self._instances if creature.alive])
 
-        #aktualizacja historii
-        #
+        self.n = len(self._instances)
+        self.history.append(self.n)
 
     def plot_history(self):
         pass
