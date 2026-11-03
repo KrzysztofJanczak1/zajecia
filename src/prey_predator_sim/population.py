@@ -9,11 +9,19 @@ class Population:
             [Creature(**kwargs) for i in range(n)]
         )
 
-        self.n = len(self._instances)
+        self.history = [self.n]
 
     def natural_selection(self):
         for creature in self._instances:
             creature.kill()
 
         self._instances = set([creature for creature in self._instances if creature.alive])
-        self.n = len(self._instances)
+
+        #aktualizacja historii
+        #
+
+    def plot_history(self):
+        pass
+    @property
+    def n(self):
+        return len(self._instances)
