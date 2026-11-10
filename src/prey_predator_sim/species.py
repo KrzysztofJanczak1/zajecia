@@ -39,3 +39,11 @@ class Creature:
     def p_reproduce(self, value):
         value = min(1.0, max(0.0, value))
         self.__p_reproduce = value
+
+
+class Prey(Creature):
+    pass
+
+
+class Predator(Creature):
+    pass
