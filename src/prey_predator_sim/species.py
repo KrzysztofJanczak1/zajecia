@@ -21,3 +21,21 @@ class Creature:
             return self.__class__(p_death=self.p_death, p_reproduce=self.p_reproduce)
 
         return None
+    
+    @property
+    def p_death(self):
+        return self.__p_death
+
+    @p_death.setter
+    def p_death(self, value):
+        value = min(1.0, max(0.0, value))
+        self.__p_death = value
+
+    @property
+    def p_reproduce(self):
+        return self.__p_reproduce
+
+    @p_reproduce.setter
+    def p_reproduce(self, value):
+        value = min(1.0, max(0.0, value))
+        self.__p_reproduce = value
