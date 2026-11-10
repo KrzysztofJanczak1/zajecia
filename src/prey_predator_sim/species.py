@@ -17,9 +17,7 @@ class Creature:
     def reproduce(self):
         '''returns new instance of creature with probablity p_reproduce (otherwise: None)'''
 
-        # to do: change creature class to different one
-
         if self.alive and  (random.random() < self.p_reproduce):
-            return Creature(p_death=self.p_death, p_reproduce=self.p_reproduce)
+            return self.__class__(p_death=self.p_death, p_reproduce=self.p_reproduce)
 
         return None
