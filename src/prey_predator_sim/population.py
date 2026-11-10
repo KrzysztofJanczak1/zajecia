@@ -6,10 +6,16 @@ class Population:
     _instances: set[Creature]
     history: list[int]
 
-    def __init__(self, n: int, **kwargs):
-        self._instances = set(
-            [Creature(**kwargs) for i in range(n)]
-        )
+    def __init__(
+            self,
+            population_data: dict[type[Creature], int],
+            **kwargs
+    ):
+        self._instances = {
+            species_class(**kwargs)
+            for species_class, count in population_data.items()
+            for _ in range(count)
+        }
 
         self.history = [self.n]
 
