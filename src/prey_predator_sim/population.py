@@ -1,4 +1,4 @@
-from .species import Creature
+from species import Creature
 import matplotlib.pyplot as plt
 
 class Population:
@@ -11,6 +11,9 @@ class Population:
             population_data: dict[type[Creature], int],
             **kwargs
     ):
+        # Zapamiętujemy gatunki i zapisujemy do tuple
+        self._species = tuple(population_data)
+
         # Klasa gatunku jest kluczem, a wartość to liczba osobników
         self._instances = {
             species_class(**kwargs)
@@ -18,7 +21,7 @@ class Population:
             for _ in range(count)
         }
 
-        self.history = [self.n]
+        self.history = [len(self._instances)]
 
     def natural_selection(self):
         for creature in self._instances:
@@ -30,7 +33,7 @@ class Population:
             if creature.alive
         }
 
-        self.history.append(self.n)
+        self.history.append(len(self._instances))
 
     def plot_history(self):
         plt.figure()
