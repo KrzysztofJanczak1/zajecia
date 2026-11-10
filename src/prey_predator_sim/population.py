@@ -1,4 +1,4 @@
-from species import Creature
+from .species import Creature
 import matplotlib.pyplot as plt
 
 class Population:
