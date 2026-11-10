@@ -11,6 +11,7 @@ class Population:
             population_data: dict[type[Creature], int],
             **kwargs
     ):
+        # Klasa gatunku jest kluczem, a wartość to liczba osobników
         self._instances = {
             species_class(**kwargs)
             for species_class, count in population_data.items()
