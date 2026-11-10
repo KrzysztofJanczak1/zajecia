@@ -24,7 +24,11 @@ class Population:
         for creature in self._instances:
             creature.kill()
 
-        self._instances = set([creature for creature in self._instances if creature.alive])
+        # Zachowujemy tylko żywe osobniki
+        self._instances = {
+            creature for creature in self._instances
+            if creature.alive
+        }
 
         self.history.append(self.n)
 
@@ -34,7 +38,7 @@ class Population:
         plt.plot(
             range(len(self.history)),
             self.history,
-            label="Creature"
+            label="Cała populacja"
         )
 
         plt.xlabel("Krok symulacji")
@@ -44,6 +48,7 @@ class Population:
         plt.grid(True)
 
         plt.show()
+
     @property
     def n(self):
         return len(self._instances)
