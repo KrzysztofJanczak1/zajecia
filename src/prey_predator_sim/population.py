@@ -52,6 +52,20 @@ class Population:
 
         plt.show()
 
+    def count_by_species(self):
+        counts = {}
+
+        # Ustawiamy początkową liczbę osobników każdego gatunku na 0.
+        for species in self._species:
+            counts[species] = 0
+
+        # Sprawdzamy gatunek każdego osobnika i zwiększamy jego licznik.
+        for creature in self._instances:
+            species = type(creature)
+            counts[species] += 1
+
+        return counts
+
     @property
     def n(self):
-        return len(self._instances)
+        return self.count_by_species()
