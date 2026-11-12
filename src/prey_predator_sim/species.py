@@ -42,7 +42,14 @@ class Creature:
 
 
 class Prey(Creature):
-    pass
+    name = "Prey"
+
+    def __init__(self, p_death, p_reproduce, p_hunt=0.5):
+        # Ustawiamy parametry odziedziczone po Creature.
+        super().__init__(p_death, p_reproduce)
+
+        # Prawdopodobieństwo skutecznego upolowania tej ofiary.
+        self.p_hunt = p_hunt
 
 
 class Predator(Creature):
