@@ -53,4 +53,32 @@ class Prey(Creature):
 
 
 class Predator(Creature):
-    pass
+    name = "Predator"
+    p_death_hungry = 0.9
+
+    def __init__(self, p_death, p_reproduce):
+        super().__init__(p_death, p_reproduce)
+
+        # Przyjmujemy, że nowy drapieżnik zaczyna jako głodny.
+        self.hungry = True
+
+    def hunt(self, prey):
+        # Martwy drapieżnik nie poluje, a martwa ofiara
+        # nie może zostać upolowana ponownie.
+        if not self.alive or not prey.alive:
+            return
+
+        # Sukces polowania zależy od parametru ofiary.
+        if random.random() < prey.p_hunt:
+            prey.alive = False
+            self.hungry = False
+
+    def kill(self):
+        # Głodny drapieżnik ma większe ryzyko śmierci.
+        if self.hungry:
+            probability = self.p_death_hungry
+        else:
+            probability = self.p_death
+
+        if random.random() < probability:
+            self.alive = False
