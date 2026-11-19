@@ -1,4 +1,4 @@
-from .species import Creature
+from .species import Creature, Prey, Predator
 import matplotlib.pyplot as plt
 
 class Population:
@@ -22,6 +22,28 @@ class Population:
         }
 
         self.history = [len(self._instances)]
+
+    def hunting(self):
+        predators = []
+        preys = []
+
+        # Tworzymy listy żywych drapieżników i ofiar.
+        for creature in self._instances:
+            if creature.alive:
+                if isinstance(creature, Predator):
+                    predators.append(creature)
+                elif isinstance(creature, Prey):
+                    preys.append(creature)
+
+        # Możemy utworzyć tyle par, ile osobników ma mniejsza grupa.
+        pairs_count = min(len(predators), len(preys))
+
+        # Każdy drapieżnik poluje na jedną przypisaną mu ofiarę.
+        for i in range(pairs_count):
+            predator = predators[i]
+            prey = preys[i]
+
+            predator.hunt(prey)
 
     def natural_selection(self):
         for creature in self._instances:
